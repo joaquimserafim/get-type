@@ -17,5 +17,8 @@
   "dependencies": {
     "core-util-is": "^1.0.1",
     "is-json": "^1.1.3"
+  },
+  "devDependencies": {
+    "tape": "^2.13.1"
   }
 }
