@@ -1,0 +1,21 @@
+{
+  "name": "get-type",
+  "version": "0.0.0",
+  "description": "can return a string indicating the type of the unevaluated operand or an object with the string and the value already converted",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "typeof",
+    "type",
+    "convert",
+    "cast"
+  ],
+  "author": "@joaquimserafim",
+  "license": "ISC",
+  "dependencies": {
+    "core-util-is": "^1.0.1",
+    "is-json": "^1.1.3"
+  }
+}
