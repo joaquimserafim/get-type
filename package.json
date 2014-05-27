@@ -1,7 +1,7 @@
 {
   "name": "get-type",
-  "version": "0.0.0",
-  "description": "can return a string indicating the type of the unevaluated operand or an object with the string and the value already converted",
+  "version": "1.0.0",
+  "description": "Get the type of a variable or one unevaluated operand",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"
@@ -9,8 +9,9 @@
   "keywords": [
     "typeof",
     "type",
-    "convert",
-    "cast"
+    "cast",
+    "checking",
+    "is"
   ],
   "author": "@joaquimserafim",
   "license": "ISC",

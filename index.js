@@ -1,34 +1,35 @@
 var is = require('core-util-is');
-var isJSON = require('is-json');
+is.isJSON = require('is-json');
 
 
 module.exports = new Type();
 
 
 function Type () {
-  // put isJSON in first
-  this._is = ['isJSON'];
-  this.isJSON = isJSON;
-
   // lets make use of core-util-is
   Object.keys(is).forEach(function (fn) {
-    // lets jump isobject & isnullorundefined
-    if (['isObject', 'isNullOrUndefined'].indexOf(fn) !== -1) return;
     this[fn] = is[fn];
-    this._is.push(fn);
   }, this);
-
-  // isObject in last because to get Regex, Date & Error
-  this._is.push('isObject', 'isNullOrUndefined');
-  this.isObject = is.isObject;
-  // NullOrUndefined is only to be used directly
-  // with type.isNullOrUndefined
-  this.isNullOrUndefined = is.isNullOrUndefined;
 }
 
 Type.prototype.get = function (op) {
-  for (var i = 0; i < this._is.length; i++) {
-    if (this[this._is[i]](op))
-      return this._is[i].replace('is', '').toLowerCase();
+  if (this.isPrimitive(op)) {
+    return this.isNull(op) ? 'null' :
+      this.isJSON(op) ? 'json' :
+      this.isBoolean(op) ? 'boolean' :
+      this.isNumber(op) ? 'number' :
+      this.isSymbol(op) ? 'symbol' :
+      this.isString(op) ? 'string' :
+      this.isUndefined(op) ? 'undefined' : 'unknown';
   }
+
+  if (this.isObject(op)) {
+    return this.isArray(op) ? 'array' :
+      this.isRegExp(op) ? 'regexp' :
+      this.isDate(op) ? 'date' :
+      this.isError(op) ? 'error' :
+      this.isBuffer(op) ? 'buffer' : 'object';
+  }
+
+  if (this.isFunction(op)) return 'function';
 };
