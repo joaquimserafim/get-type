@@ -1,5 +1,5 @@
 var is = require('core-util-is');
-is.isJSON = require('is-json');
+is.isJSON = require('is-json').strict;
 
 
 module.exports = new Type();
@@ -15,10 +15,10 @@ function Type () {
 Type.prototype.get = function (op) {
   if (this.isPrimitive(op)) {
     return this.isNull(op) ? 'null' :
-      this.isJSON(op) ? 'json' :
       this.isBoolean(op) ? 'boolean' :
       this.isNumber(op) ? 'number' :
       this.isSymbol(op) ? 'symbol' :
+      this.isJSON(op) ? 'json' :
       this.isString(op) ? 'string' :
       this.isUndefined(op) ? 'undefined' : 'unknown';
   }
